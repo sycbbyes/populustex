@@ -1,0 +1,244 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" id="populartex">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <!--<link rel="stylesheet" type="text/css" href="css/css.css"/>-->
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.13/angular.js"></script>-->
+    <script src="/lib/angular/angular.js"></script>
+    <script src="/scripts/app.js"></script>
+    <script src="/scripts/controller/ptextCtrl.js"></script>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <style>
+        .b-active {
+            color:ghostwhite;
+            font:100;
+            background-color:darkgreen;
+        }
+    </style>
+    <title>Bamboo Fiber, Bamboo Yarn, Pakistan Cotton Yarn - China Populus Textile Limited
+        - Bamboo Fiber and Bamboo Yarn and Pakistan Cotton Yarn Supplier - www.populustex.com
+    </title>
+<body >
+    <script src="http://cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script>
+        $(function() {
+            select_a =function(a) {
+                $(a).parents().find('dd').removeClass('b-active');
+                $(a).parents().find('dt').removeClass('b-active');
+                $(a).addClass('b-active');
+                //初始化轮播
+                $('#myCarousel').carousel(0);
+            };          
+        });
+    </script>
+    <div ng-app="TexApp" ng-controller="DataController">
+        <div class="container" style="background-color:#fcfffc">
+            <!-- head & language button -->
+            <div class="row">
+                <img src="/img/logo.jpg" height="150px" width="1170px"/>
+            </div>
+            <!-- top menu-->
+            <div class="row" style="background-color:#fcfffc" >
+                <div class="col-sm-10" >
+                    <ul class="nav nav-pills pull-left" >
+                        <li class="text-left" ng-repeat="topMenu in view.topMenuList">
+                            <a  
+                                class="text-left" 
+                                ng-click="setContentItem(topMenu.key)"
+                                style="cursor:pointer;color:black;">
+                                {{topMenu.value.name}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-2">
+                    <img class="btn inline pull-right"
+                         ng-repeat="lang in btnLanguage"
+                         ng-click='setLanguage(lang.key)'
+                         ng-src="{{lang.picUrl}}" width="80px">
+                    {{lang.key}}
+                    </img>
+                </div>
+            </div>
+            <hr class="top" style="position: relative;top: -20px; margin-bottom: -5px; green;"/>
+            <!-- content -->
+            <div class="row">
+                <!-- left menu-->
+                <!-- <div class="col-sm-1" style=" height:auto;">
+                    <dt class="text-center"style='background-color:darkgreen;color:white;font-weight: normal'>
+                        <br/>
+                        POPULUS TEX<br/>
+                        <br/>
+                    </dt>
+                    <div ng-repeat = "menuParent in view.leftMenuList">
+                        <dt onclick="select_a(this);"
+                            class=""
+                            ng-click="setContentItem(menuParent.key)"
+                            style='cursor:pointer;font-weight: normal;font-family:arial;'>
+                            {{menuParent.value.name}}
+                        </dt>
+                        <dd onclick="select_a(this);"
+                            ng-repeat="menuChild in menuParent.value.items"
+                            style="cursor:pointer;color:black;font-size: small;font-family:arial;"
+                            ng-click="setContentItem(menuChild.key)">
+                            &nbsp;&nbsp;&nbsp;&nbsp;{{menuChild.name}}
+                        </dd> 
+                    </div>
+                    <div>
+                        <dt>&nbsp</dt>
+                        <dt>&nbsp</dt>
+                        <dt>&nbsp</dt>
+                        <dt>&nbsp</dt>
+                        <dt>&nbsp</dt>
+                        <dt>&nbsp</dt>
+                    </div>
+                    <HR style="border:3;dashed:darkgreen" width="100%" SIZE=3>
+                    <div>
+                        <dt>Contact Us:</dt>
+                        <dt>&nbsp</dt>
+                        <dt>Tel: 0086-10-62717582</dt>
+                        <dt>Fax: 0086-10-58850786</dt>
+                        <dt>Email: joanna@populustex.com</dt>
+                    </div>
+                </div> -->
+                <!--<hr style="height: 300px;width: 1px"/>-->
+                <!-- content-->
+                <div class="col-sm-12">
+                    <div id="myCarousel" class="carousel slide" data-ride="carousel" data-slide-to="0">
+                        <!-- looping carousel pointer -->
+                        <ol class="carousel-indicators">
+                            <!-- <li data-target="#myCarousel"
+                                ng-repeat="obj in view.displayContent.main.pics track by $index"
+                                data-slide-to="{{flagMenuItemChanged==true?0:$index}}"
+                                class='{{(flagMenuItemChanged==true?0:$index)==0?"active":""}}'
+                            >
+                            </li> -->
+                            <li data-target="#myCarousel"
+                            ng-repeat="obj in view.displayContent.main.pics track by $index"
+                            data-slide-to="0"
+                            class='"active"'>
+                            </li>
+                        </ol>
+                        <!-- looping carousel item -->
+                        <div class="carousel-inner">
+                            <!-- <div class='item {{$index==0?"active":" "}}'  -->
+                            <div class='item {{$index==0?"active":""}}' 
+                                 ng-repeat="obj in view.displayContent.main.pics track by $index">
+                                 <img style="{{obj.cssStyle}}" ng-src="{{obj.url}}"/>
+                                 <div class="carousel-caption">{{$index}} {{obj.name}}</div>
+                            </div>
+                        </div>
+                        <!-- 轮播（Carousel）导航 -->
+                        <a class="carousel-control left" href="#myCarousel"
+                           data-slide="prev">&lsaquo;</a>
+                        <a class="carousel-control right" href="#myCarousel"
+                           data-slide="next">&rsaquo;</a>
+                    </div>
+                    <!-- 轮播（Carousel）调用事件 -->
+                    <script>
+                        $(function(){
+                            //获取angularjs中的方法和变量
+                            var appElement = document.querySelector('[ng-controller=DataController]');
+                            var $scope = angular.element(appElement).scope();
+                            // alert(scope.flagMenuItemChanged);
+
+                            $('#myCarousel').on('slide.bs.carousel', function () {
+                                // alert('trigger after slid');
+                                // if($scope.flagMenuItemChanged == 1 ){ 
+                                //     $scope.flagMenuItemChanged = 0;
+                                //     // alert($scope.flagMenuItemChanged);
+                                //     $('#myCarousel').carousel(0); 
+                                // }
+                            });
+                            $('#myCarousel').on('slid.bs.carousel', function () {
+                                // alert('trigger before slid');
+                                // if($scope.flagMenuItemChanged == 1 ){ 
+                                //     $scope.flagMenuItemChanged = 0;
+                                //     // alert($scope.flagMenuItemChanged);
+                                //     $('#myCarousel').carousel(0); 
+                                // }
+                                // alert(flagMenuItemChanged);
+                            });
+                        });                  
+                    </script>
+                    
+                    <!-- main pic-->
+                    <!--<div ng-repeat="obj in view.displayContent.main.pics">-->
+                        <!--<img style = "{{obj.cssStyle}}" ng-src="{{obj.url}}"/>-->
+                    <!--</div>-->
+
+                    <hr ng-show="view.displayContent.main.pics && view.displayContent.main.pics.length>0"/>
+                    <!--main description-->
+                    <div ng-repeat="obj in view.displayContent.main.desc">
+                        <span ng-switch on='obj.desc && obj.desc.includes("http://")'>
+                            <span ng-switch-when="true">
+                                <a ng-href='{{obj.desc && obj.desc.includes("http://")?obj.desc:""}}'>
+                                    &nbsp;&nbsp;{{obj.desc}}
+                                </a><br/>
+                            </span>
+                            <span ng-switch-when="false">
+                                <span style='{{view.displayContent.main.cssStyle}}'>{{obj.desc}}</span><br/>
+                            </span>
+                        </span>
+                    </div>
+
+                    <hr ng-show="view.displayContent.detail.pics && view.displayContent.detail.pics.length>0"/>
+                    <!-- detail pic-->
+                    <img class="form-inline"
+                         ng-repeat="obj in view.displayContent.detail.pics"
+                         ng-src="{{obj.url}}"
+                         ng-click="viewOriginalPic(obj.url)"
+                            width="20%" height="20%"/>
+                    <div ng-repeat="obj in view.displayContent.detail.desc">
+                        <p>{{obj.head}}</p>
+                        <p ng-href="obj.url">{{obj.desc}}</p>
+                    </div>
+
+                    <hr ng-show="view.displayContent.detail.tables && view.displayContent.detail.tables.length>0"/>
+                    <div ng-repeat="obj in view.displayContent.detail.tables">
+                        <p>{{obj.title}}</p>
+                        <table class="table table-bordered">
+                            <thead>
+                                <th ng-repeat="tableHead in obj.head track by $index "> {{tableHead}}</th>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="tablerow in obj.data">
+                                    <td ng-repeat="val in tablerow.value1 track by $index ">
+                                        {{val}}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div ng-repeat="tbDesc in obj.desc">
+                        <span ng-switch on='tbDesc.desc && tbDesc.desc.includes("http://")'>
+                            <span ng-switch-when="true">
+                                <a ng-href='{{tbDesc.desc && tbDesc.desc.includes("http://")?obj.desc:""}}'>
+                                    &nbsp;&nbsp;{{tbDesc.desc}}
+                                </a>
+                                <br/>
+                            </span>
+                            <span ng-switch-when="false">
+                                <span>{{tbDesc.desc}}</span>
+                                <br/>
+                            </span>
+                        </span>
+                        </div>
+                    </div>
+                    <div>
+                        <br/>
+                        <br/>
+                        <br/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--<script src="/project/populustex/lib/angular/angular.js"></script>-->
+
+</body>
+<script>
+
+</script>
+</html>

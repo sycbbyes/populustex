@@ -1,0 +1,24 @@
+TML代码：
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="NgDropdownDemo">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <!-- <title>Angularjs + Bootstrap Dropdown 示例</title> -->
+  <link href="Content/bootstrap.min.css" rel="stylesheet" />
+  <script src="Scripts/jquery-1.9.1.min.js"></script>
+  <script src="Scripts/bootstrap.min.js"></script>
+  <script src="Scripts/angular.min.js"></script>
+  <script src="app.js"></script>
+</head>
+<body ng-controller="NgDropdownController">
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">Angularjs + Bootstrap Dropdown 示例</div>
+      <div class="panel-body">
+        <bs-dropdown data-menu-type="button" select-val="selected_status = selectedVal"
+                     preselected-item="selected_status" data-dropdown-data="statuses"></bs-dropdown>  &nbsp; Selected Value : {{selected_status}}
+      </div>
+    </div>
+  </div>
+</body>
+</html>
